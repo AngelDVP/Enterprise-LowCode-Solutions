@@ -1,46 +1,43 @@
-# Geovisión: Sistema de Geolocalización y Automatización de Clientes
+# Enterprise Power Platform & BI Solutions
 
-Solución end-to-end de transformación digital diseñada para optimizar la planificación territorial, asegurar la calidad de datos en terreno (Data Quality) y automatizar el flujo de creación de clientes para una red de distribución de consumo masivo con más de 19.000 clientes activos.
+Repositorio de soluciones de transformación digital, optimización de procesos de negocio y análisis de datos en entornos corporativos de consumo masivo.
 
-El proyecto integra análisis geoespacial en QGIS, desarrollo low-code en Power Apps, flujos de integración en Power Automate y almacenamiento estructurado en Dataverse.
+Este portafolio contiene la arquitectura técnica, roadmaps de implementación y prototipos funcionales desarrollados con Microsoft Power Platform, integración de APIs y modelamiento espacial.
 
 ---
 
 ## Estructura del Repositorio
 
-* **Resumen_Ejecutivo_MVP_GEOVISION.md**: Documento de análisis estratégico, comparativa de costos de licenciamiento (In-house vs. Externo) y cronograma de implementación de la solución.
-* **Geovision_Client_Creation_App.zip**: Paquete de exportación de la aplicación en Power Apps (Canvas App) que incluye el diseño de pantallas, variables locales y la lógica de validación.
+### 01 - Geovision APP
+Sistema de geolocalización y auditoría en terreno para el registro de clientes. Diseñado para optimizar la planificación de rutas y asegurar la calidad de datos (Data Quality) sobre una red de +19.000 clientes activos.
+* **Geovision_Client_Creation_App.zip**: Paquete de exportación de la aplicación en Power Apps (Canvas App) listo para importar.
+* **Resumen_Ejecutivo_MVP_GEOVISION.md**: Documento estratégico de diagnóstico del negocio, comparativa de costos de licenciamiento (In-house vs. Externo) y cronograma del proyecto.
+* **GEOVISION - TRANSFORMACION DIGITAL.pptx**: Presentación ejecutiva del proyecto, arquitectura técnica del sistema y propuesta comercial.
+
+### 02 - Rendiciones
+Sistema automatizado de rendición de gastos digitales integrado con inteligencia artificial para la lectura y procesamiento de documentos contables.
+* **propuesta_rendiciones.md**: Documento de respaldo técnico que detalla la arquitectura de integración entre Power Apps, Power Automate y la API de OpenAI (GPT Vision), incluyendo fórmulas de Power Fx y payloads JSON.
 
 ---
 
-## Problema de Negocio
+## Proyectos Destacados
 
-La operación comercial en terreno presentaba ineficiencias críticas debido a:
-* **Fragilidad del dato manual**: Errores humanos de tipeo en direcciones y coordenadas falsas ingresadas por la fuerza de venta.
-* **Impacto logístico (Efecto Dominó)**: Coordenadas de entrega erróneas que causaban fallas en la planificación de rutas de despacho, aumentando el consumo de combustible de la flota y generando devoluciones.
-* **Falta de auditoría**: Imposibilidad de verificar si el vendedor realmente visitaba físicamente al cliente al momento de registrarlo.
+### 1. Proyecto Geovisión
+* **Desafío**: Pérdida de eficiencia logística por coordenadas de entrega erróneas en el ERP, falta de herramientas de auditoría en terreno y registro propenso a errores humanos.
+* **Solución**: Aplicación móvil con captura GPS obligatoria y funcionamiento offline-first, conectada a Dataverse para saneamiento previo de datos de clientes antes de la inyección al ERP.
+* **Impacto**: Optimización geoespacial en QGIS agrupando a 19.317 clientes en 90 zonas de venta equilibradas, reduciendo tiempos de traslado.
 
----
-
-## Solución Arquitectónica
-
-### 1. Aplicación Móvil (Power Apps & Dataverse)
-* **Captura GPS Obligatoria**: Bloqueo de registro que fuerza la obtención de las coordenadas GPS exactas en terreno.
-* **Soporte Offline-First**: Almacenamiento local temporal para asegurar el registro en zonas rurales o de baja conectividad.
-* **Consumo Seguro**: Conexión nativa a tablas relacionales de Dataverse como almacenamiento intermedio antes de inyectar los datos al ERP (QAD/SOM).
-
-### 2. Integración y Lógica (Power Automate)
-* **Validación en Tiempo Real**: Flujos automáticos que evalúan banderas de duplicados de clientes (mediante RUT) antes de autorizar la creación.
-* **Procesamiento Documental con IA (OpenAI API)**: Integración con modelos de visión para la extracción y validación automática de datos desde documentos contables de los clientes, reduciendo el ciclo de procesamiento de **3 días a 20 minutos**.
-
-### 3. Modelamiento Geoespacial (QGIS)
-* **Optimización Territorial**: Agrupamiento espacial de 19.317 clientes activos en 90 zonas de venta balanceadas, disminuyendo los tiempos de traslado del equipo comercial en terreno.
+### 2. Prototipo de Rendición de Gastos con IA
+* **Desafío**: Procesamiento manual de boletas físicas de rendición de gastos que demoraba un promedio de 3 días hábiles.
+* **Solución**: Flujo automatizado que captura la imagen del documento en Power Apps, extrae los datos clave (Monto, Fecha, Comercio, Folio) mediante una solicitud HTTP a la API de OpenAI (GPT Vision) en Power Automate, y registra la transacción auditada en Dataverse.
+* **Impacto**: Reducción del ciclo de procesamiento contable de **3 días a 20 minutos** por rendición.
 
 ---
 
-## Cómo importar la aplicación
+## Cómo importar las aplicaciones
 
-1. Descarga el archivo `Geovision_Client_Creation_App.zip` de este repositorio.
+### Power Apps (.zip)
+1. Descarga el archivo `.zip` correspondiente de la carpeta `01 - Geovision APP`.
 2. Accede a tu entorno de Microsoft Power Apps.
-3. En el panel izquierdo, selecciona **Aplicaciones** y haz clic en **Importar aplicación de lienzo**.
-4. Sube el archivo ZIP y configura las conexiones requeridas (Dataverse y conectores de flujo).
+3. Selecciona **Aplicaciones** en el menú izquierdo y haz clic en **Importar aplicación de lienzo**.
+4. Sube el paquete ZIP y configura las conexiones (Dataverse y Power Automate).
